@@ -9,12 +9,12 @@ import lombok.Builder;
  * @author Artem Kovalov on 01.10.2023
  */
 @Builder
-public record UserAddressUpdateDto(
+public record UserPhoneUpdateDto(
         @Positive
         Long id,
 
         @NotNull
-        @Size(min = 2, max = 32, message = "Address must be between 2 and 32 characters long")
-        String address
+        @Size(min = 2, max = 32, message = "Phone number must be between 2 and 32 characters long")
+        String phoneNumber
 ) {
 }
