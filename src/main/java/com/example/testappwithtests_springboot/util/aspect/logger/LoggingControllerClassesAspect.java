@@ -1,4 +1,4 @@
-package com.example.testappwithtests_springboot.util.logger;
+package com.example.testappwithtests_springboot.util.aspect.logger;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
