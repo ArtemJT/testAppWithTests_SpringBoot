@@ -1,4 +1,4 @@
-package com.example.testappwithtests_springboot.util;
+package com.example.testappwithtests_springboot.util.mapper;
 
 import com.example.testappwithtests_springboot.dto.UserAddressUpdateDto;
 import com.example.testappwithtests_springboot.dto.UserPhoneUpdateDto;
