@@ -13,10 +13,10 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = DateRightFormedValidator.class)
-public @interface DateRightFormed {
+@Constraint(validatedBy = BirthDateValidator.class)
+public @interface BirthDate {
 
-    String message() default "Birth date must match pattern 'YYYY-MM-DD'";
+    String message() default "Age does not meet restrictions";
 
     Class<?>[] groups() default {};
 

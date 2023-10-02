@@ -2,26 +2,25 @@ package com.example.testappwithtests_springboot.util.annotations;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAccessor;
 
 /**
  * @author Artem Kovalov on 01.10.2023
  */
-public final class DateRightFormedValidator implements ConstraintValidator<DateRightFormed, String> {
+public final class BirthDateValidator implements ConstraintValidator<BirthDate, TemporalAccessor> {
 
-    private final LocalDate minYear = LocalDate.now().minusYears(18);
-
-
-    @Override
-    public void initialize(DateRightFormed constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-    }
+    @Value("${min-age}")
+    private String age;
 
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(TemporalAccessor value, ConstraintValidatorContext context) {
         if (value != null) {
-            LocalDate date = LocalDate.parse(value);
+            LocalDate date = LocalDate.parse(value.toString());
+            long minAge = Long.parseLong(age);
+            LocalDate minYear = LocalDate.now().minusYears(minAge);
             return date.isBefore(minYear);
         }
         return false;
