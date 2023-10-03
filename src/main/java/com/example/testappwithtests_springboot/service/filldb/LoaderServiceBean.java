@@ -5,6 +5,7 @@ import com.example.testappwithtests_springboot.service.UserService;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,6 +24,9 @@ public class LoaderServiceBean implements LoaderService {
 
     private final UserService userService;
     private final Random random = new Random();
+
+    @Value("${min-age}")
+    private String age;
 
     @Override
     public void generateData(int amount) {
@@ -54,7 +58,8 @@ public class LoaderServiceBean implements LoaderService {
     }
 
     private LocalDate generateBirthDate() {
-        int maxYear = LocalDate.now().getYear();
+        long minAge = Long.parseLong(age);
+        int maxYear = LocalDate.now().minusYears(minAge).getYear();
         int minYear = maxYear - 100;
         int maxDay;
 
